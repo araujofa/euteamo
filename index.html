@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="src/icone-de-coeur-rose-1.png">
+    <title>Para O Meu Amor!!</title>
+</head>
+
+<body>
+
+    <div id="intro-screen">
+        <button id="click-button">CLIQUE</button>
+    </div>
+
+    <div id="main-content" class="hidden">
+
+        <h1>Oi, Gata Loira!</h1>
+        <br>
+
+
+        <div class="slideshow-container">
+
+            <!-- Full-width images with number and caption text -->
+            <div class="mySlides fade">
+                <img src="src/img1.jpeg" style="width:100%">
+            </div>
+
+            <div class="mySlides fade">
+                <img src="src/img2.jpeg" style="width:100%">
+            </div>
+
+            <div class="mySlides fade">
+                <img src="src/img3.jpeg" style="width:100%">
+            </div>
+
+            <div class="mySlides fade">
+                <img src="src/img4.jpeg" style="width:100%">
+            </div>
+
+            <div class="mySlides fade">
+                <img src="src/img5.jpeg" style="width:100%">
+            </div>
+
+            <div class="mySlides fade">
+                <img src="src/img6.jpeg" style="width:100%">
+            </div>
+
+            <div class="mySlides fade">
+                <img src="src/img7.jpeg" style="width:100%">
+            </div>
+
+            <div class="mySlides fade">
+                <img src="src/img8.jpeg" style="width:100%">
+            </div>
+
+            <div class="mySlides fade">
+                <img src="src/img10.jpeg" style="width:100%">
+            </div>
+
+            <div class="mySlides fade">
+                <img src="src/img11.jpeg" style="width:100%">
+            </div>
+           
+        </div>
+        <br>
+ 
+
+        <p id="timer">Eu te amo há:</p>
+        <p id="countdown">2 anos, 7 meses, 18 dias, 22 horas, 26 minutos e 18 segundos</p>
+
+        <br>
+        <br>
+
+        <p class="message">
+            A cada dia que passa, meu coração se enche mais de carinho e admiração por você.
+            Cada sorriso seu ilumina o meu mundo, e cada abraço me faz sentir que estou exatamente onde deveria estar.
+            Você é a razão dos meus melhores pensamentos, e tudo ao seu lado se torna mais bonito e significativo.
+            Eu te amo para sempre 💕
+        </p>
+    </div>
+
+    <script>
+        document.getElementById('click-button').addEventListener('click', function () {
+            // 1. Esconde a tela de introdução suavemente
+            const introScreen = document.getElementById('intro-screen');
+            introScreen.style.opacity = '0';
+
+            // 2. Após a animação, remove e mostra o conteúdo principal
+            setTimeout(() => {
+                introScreen.style.display = 'none';
+                const mainContent = document.getElementById('main-content');
+                mainContent.style.display = 'block';
+                setTimeout(() => {
+                    mainContent.style.opacity = '1';
+                }, 50); // Pequeno atraso para o fade-in do conteúdo
+            }, 1000); // O tempo (1000ms) deve corresponder à sua transição CSS
+        });
+
+        const startDate = new Date('2023-10-07T20:00:00'); // **ATUALIZE COM A SUA DATA E HORA DE INÍCIO!**
+
+        function updateCountdown() {
+            const now = new Date();
+            const diff = now.getTime() - startDate.getTime();
+
+            // Cálculo da diferença de tempo
+            const totalSeconds = Math.floor(diff / 1000);
+            const totalMinutes = Math.floor(totalSeconds / 60);
+            const totalHours = Math.floor(totalMinutes / 60);
+            const totalDays = Math.floor(totalHours / 24);
+
+            // Extrai anos, meses e o resto
+            const years = Math.floor(totalDays / 365.25);
+            const remainingDaysAfterYears = totalDays % 365.25;
+            const months = Math.floor(remainingDaysAfterYears / 30.44); // Média de dias no mês
+            const days = Math.floor(remainingDaysAfterYears % 30.44);
+
+            const hours = totalHours % 24;
+            const minutes = totalMinutes % 60;
+            const seconds = totalSeconds % 60;
+
+            const timerElement = document.getElementById('countdown');
+            timerElement.textContent =
+                `${years} ano${years !== 1 ? 's' : ''}, ` +
+                `${months} me${months !== 1 ? 'ses' : 's'}, ` +
+                `${days} dia${days !== 1 ? 's' : ''}, ` +
+                `${hours} hora${hours !== 1 ? 's' : ''}, ` +
+                `${minutes} minuto${minutes !== 1 ? 's' : ''} ` +
+                `e ${seconds} segundo${seconds !== 1 ? 's' : ''}`;
+        }
+
+        // Inicia a contagem e atualiza a cada segundo
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+
+
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+            slides[slideIndex - 1].style.display = "block";
+            setTimeout(showSlides, 2000); // Change image every 2 seconds
+        }
+    </script>
+
+</body>
+
+</html>
